@@ -34,7 +34,6 @@ fn part2() {
         for (_, [value, color]) in Regex::new(r"(\d+) (red|green|blue)").unwrap().captures_iter(line).map(|c| c.extract()) {
             let color_idx = color_indexes.iter().position(|&r| r == color).unwrap();
             min_color_values[color_idx as usize] = cmp::max(value.parse::<i32>().unwrap(), min_color_values[color_idx]);
-            // println!("{:?}", min_color_values);
         }
         answer += min_color_values[0] * min_color_values[1] * min_color_values[2];
     }
