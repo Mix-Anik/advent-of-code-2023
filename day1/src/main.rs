@@ -2,7 +2,6 @@
 
 use std::{fs, collections::HashMap};
 
-
 fn get_file_string(file_path: &str) -> String {
     let contents = fs::read_to_string(file_path).expect("Unable to read string");
 
@@ -13,7 +12,7 @@ fn part1() {
     let text = get_file_string("./day1/src/input.txt");
     let mut cal_values: Vec<i32> = Vec::new();
     let mut line_nums: String = String::default();
-    
+
     for line in text.lines() {
         for c in line.chars() {
             if c.is_digit(10) {
@@ -21,7 +20,10 @@ fn part1() {
             }
         }
 
-        let cal_v: i32 = (line_nums.chars().nth(0).unwrap().to_string() + &line_nums.chars().last().unwrap().to_string()).parse::<i32>().unwrap();
+        let cal_v: i32 = (line_nums.chars().nth(0).unwrap().to_string()
+            + &line_nums.chars().last().unwrap().to_string())
+            .parse::<i32>()
+            .unwrap();
         cal_values.push(cal_v);
         line_nums = String::default();
     }
@@ -43,7 +45,7 @@ fn part2() {
         ("eight", "8t"),
         ("nine", "9e")
     ]);
-    
+
     for line in text.lines() {
         let mut nums_vec: Vec<_> = line.match_indices("one").collect();
         let mut twos_vec: Vec<_> = line.match_indices("two").collect();
@@ -54,7 +56,7 @@ fn part2() {
         let mut sevens_vec: Vec<_> = line.match_indices("seven").collect();
         let mut eights_vec: Vec<_> = line.match_indices("eight").collect();
         let mut nines_vec: Vec<_> = line.match_indices("nine").collect();
-        
+
         nums_vec.append(&mut twos_vec);
         nums_vec.append(&mut threes_vec);
         nums_vec.append(&mut fours_vec);
@@ -84,7 +86,10 @@ fn part2() {
             }
         }
 
-        let cal_v: i32 = (line_nums.chars().nth(0).unwrap().to_string() + &line_nums.chars().last().unwrap().to_string()).parse::<i32>().unwrap();
+        let cal_v: i32 = (line_nums.chars().nth(0).unwrap().to_string()
+            + &line_nums.chars().last().unwrap().to_string())
+            .parse::<i32>()
+            .unwrap();
         cal_values.push(cal_v);
     }
     let result: i32 = cal_values.iter().sum();
